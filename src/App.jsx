@@ -17,6 +17,29 @@ const App = () => {
     }
 
     const submit = event => {
+			let tasks = []
+			const types = [
+				"K",
+				"T",
+				"G",
+				"M"
+			]
+
+			document.querySelectorAll("input[type=number], input[type=text], input[type=hidden], select").forEach((item) => {
+				if (item.id == "") return
+
+				const id = item.id.split("-")
+
+				const step = id[0]
+				const type = id[1]
+
+				if (!tasks[step]) tasks[step] = {}
+
+				tasks[step]["type"] = types[type]
+				tasks[step][id[2]] = item.value
+			})
+
+			console.log(tasks)
     }
 
     return (
